@@ -1,9 +1,0 @@
-@charset "utf-8";
-/* CSS Document */
-
-body{width:100%;background-color:#FFF;font: 12px/1.5 Tahoma,Arial,"宋体",sans-serif;color:#000; margin:0; padding:0;}
-ul,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,p{margin:0;padding:0;color:#000;list-style:none;}
-img{border:0;}
-a{text-decoration:none;color:#08C;}
-a:hover{text-decoration: underline;}
-.btn_go_top:hover{background:url(../Images/btn_go_head.gif) 0 -78px no-repeat;}

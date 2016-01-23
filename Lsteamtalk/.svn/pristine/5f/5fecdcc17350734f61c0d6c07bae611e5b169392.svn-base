@@ -1,8 +1,0 @@
-package com.lesso.dao;
-
-import com.lesso.beans.CcNotice;
-
-public interface CcNoticeDao extends BaseDao<CcNotice> {
-	
-	public int saveCcNotice(CcNotice ccNotice);
-}

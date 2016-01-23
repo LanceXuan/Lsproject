@@ -1,9 +1,0 @@
-package com.lesso.service;
-
-import com.lesso.beans.IMAdmin;
-
-public interface IMAdminService {
-	public IMAdmin findIMAdmin(String username);
-	public boolean saveIMAdmin(IMAdmin imadmin);
-	public boolean login(String username,String pwd);
-}
