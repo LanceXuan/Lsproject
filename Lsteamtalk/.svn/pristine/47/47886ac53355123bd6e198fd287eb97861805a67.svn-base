@@ -1,0 +1,53 @@
+package com.lesso.serviceImpl;
+
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
+import com.lesso.beans.CcNotice;
+import com.lesso.dao.CcNoticeDao;
+import com.lesso.daoImpl.CcNoticeDaoImpl;
+import com.lesso.service.CcNoticeService;
+
+public class CcNoticeServiceImpl implements CcNoticeService{
+	private CcNoticeDao dao = new CcNoticeDaoImpl();
+	
+	@Override
+	public int saveCcNotice(CcNotice ccNotice) {
+		// TODO Auto-generated method stub
+		int isok = dao.saveCcNotice(ccNotice);
+		//处理结果
+        if(isok>0){
+            System.out.println("操作成功");
+        }else{
+            System.out.println("操作失败");
+        }
+        return isok;
+	}
+
+	@Override
+	public CcNotice getCcNotice(int noticeId) {
+		// TODO Auto-generated method stub
+		CcNotice notice = new CcNotice();
+		try {
+			notice = dao.getCcNotice(noticeId);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return notice;
+	}
+
+	@Override
+	public List<CcNotice> findByPagination(int currentPage, int pageSize,
+			Map<String, Object> m) throws Exception {
+		return dao.findByPagination(currentPage, pageSize, m);
+	}
+
+	@Override
+	public int getTotal(Map<String, Object> m) throws Exception {
+		return dao.getTotal(m);
+	}
+
+}

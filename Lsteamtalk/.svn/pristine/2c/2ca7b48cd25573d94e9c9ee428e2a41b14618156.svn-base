@@ -1,0 +1,48 @@
+package com.lesso.daoImpl;
+
+import java.util.List;
+import java.util.Map;
+
+import com.lesso.beans.IMDepart;
+import com.lesso.dao.IMDepartDao;
+
+public class IMDepartDaoImpl extends BaseDaoImpl<IMDepart> implements IMDepartDao{
+
+	@Override
+	public IMDepart findIMDepart(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int saveIMDepart(IMDepart obj) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<IMDepart> findByPagination(int currentPage, int pageSize,
+			Map<String, Object> m) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getTotal(Map<String, Object> m) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public boolean updateIMAdmin(IMDepart imdep) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean deleteIMAdmin(int id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

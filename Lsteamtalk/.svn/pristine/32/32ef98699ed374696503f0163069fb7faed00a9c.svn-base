@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>LsBaoBiao</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <servlet-name>SignAction</servlet-name>
+    <servlet-class>com.lesso.action.SignAction</servlet-class>
+  </servlet>
+    <servlet>
+    <servlet-name>UsersAction</servlet-name>
+    <servlet-class>com.lesso.action.UsersAction</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DepartAction</servlet-name>
+    <servlet-class>com.lesso.action.DepartAction</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>GroupAction</servlet-name>
+    <servlet-class>com.lesso.action.GroupAction</servlet-class>
+  </servlet>
+    <servlet>
+    <servlet-name>IMGroupMessageAction</servlet-name>
+    <servlet-class>com.lesso.action.IMGroupMessageAction</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DiscoveryAction</servlet-name>
+    <servlet-class>com.lesso.action.DiscoveryAction</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>IMMessageAction</servlet-name>
+    <servlet-class>com.lesso.action.IMMessageAction</servlet-class>
+  </servlet>
+  	<servlet>
+		<servlet-name>FileUpLoadAction</servlet-name>
+		<servlet-class>com.lesso.action.FileUpLoadAction</servlet-class>
+	</servlet>
+	
+ <servlet>
+    <servlet-name>CcNoticeAction</servlet-name>
+    <servlet-class>com.lesso.action.CcNoticeAction</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <servlet-name>NoticesReceivedAction</servlet-name>
+    <servlet-class>com.lesso.action.NoticesReceivedAction</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <servlet-name>VkorgListAction</servlet-name>
+    <servlet-class>com.lesso.action.VkorgListAction</servlet-class>
+  </servlet>
+  
+	
+	<servlet-mapping>
+		<servlet-name>FileUpLoadAction</servlet-name>
+		<url-pattern>/upload</url-pattern>
+	</servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SignAction</servlet-name>
+    <url-pattern>/privilegemgmt/login.action</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UsersAction</servlet-name>
+    <url-pattern>/privilegemgmt/users.action</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+      <servlet-name>DepartAction</servlet-name>
+    <url-pattern>/privilegemgmt/dept.action</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+      <servlet-name>GroupAction</servlet-name>
+    <url-pattern>/privilegemgmt/Group.action</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+     <servlet-name>IMGroupMessageAction</servlet-name>
+    <url-pattern>/privilegemgmt/gm.action</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+     <servlet-name>DiscoveryAction</servlet-name>
+    <url-pattern>/privilegemgmt/disca.action</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+     <servlet-name>IMMessageAction</servlet-name>
+    <url-pattern>/privilegemgmt/imme.action</url-pattern>
+  </servlet-mapping>
+  
+   <servlet-mapping>
+     <servlet-name>CcNoticeAction</servlet-name>
+    <url-pattern>/privilegemgmt/ccNotice.action</url-pattern>
+  </servlet-mapping>
+  
+   <servlet-mapping>
+     <servlet-name>CcNoticeAction</servlet-name>
+    <url-pattern>/ccNotice.action</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+     <servlet-name>NoticesReceivedAction</servlet-name>
+    <url-pattern>/privilegemgmt/NoticesReceivedAction.action</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+     <servlet-name>VkorgListAction</servlet-name>
+    <url-pattern>/control/Vkorg.action</url-pattern>
+  </servlet-mapping>
+  
+</web-app>

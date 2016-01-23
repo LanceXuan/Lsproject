@@ -1,0 +1,25 @@
+
+        #uboxstyle .select_box {
+            WIDTH: 250px; HEIGHT: 24px
+        }
+        #uboxstyle DIV.tag_select {
+            PADDING-RIGHT: 10px; DISPLAY: block; PADDING-LEFT: 10px; BACKGROUND: url(http://www.geekso.com/attachment/ubox-select.gif) no-repeat 0px 0px; PADDING-BOTTOM: 0px; WIDTH: 230px; COLOR: #79a2bd; LINE-HEIGHT: 24px; PADDING-TOP: 0px; HEIGHT: 24px
+        }
+        #uboxstyle DIV.tag_select_hover {
+            PADDING-RIGHT: 10px; DISPLAY: block; PADDING-LEFT: 10px; BACKGROUND: url(http://www.geekso.com/attachment/ubox-select.gif) no-repeat 0px -24px; PADDING-BOTTOM: 0px; WIDTH: 230px; COLOR: #79a2bd; LINE-HEIGHT: 24px; PADDING-TOP: 0px; HEIGHT: 24px
+        }
+        #uboxstyle DIV.tag_select_open {
+            PADDING-RIGHT: 10px; DISPLAY: block; PADDING-LEFT: 10px; BACKGROUND: url(http://www.geekso.com/attachment/ubox-select.gif) no-repeat 0px -48px; PADDING-BOTTOM: 0px; WIDTH: 230px; COLOR: #79a2bd; LINE-HEIGHT: 24px; PADDING-TOP: 0px; HEIGHT: 24px
+        }
+        #uboxstyle UL.tag_options {
+            PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url(http://www.geekso.com/attachment/ubox-select.gif) no-repeat right bottom; PADDING-BOTTOM: 5px; MARGIN: 0px; WIDTH: 250px; PADDING-TOP: 0px; LIST-STYLE-TYPE: none; POSITION: absolute
+        }
+        #uboxstyle UL.tag_options LI {
+            PADDING-RIGHT: 10px; DISPLAY: block; PADDING-LEFT: 10px; BACKGROUND: url(http://www.geekso.com/attachment/ubox-select.gif) repeat-y -250px 0px; PADDING-BOTTOM: 0px; WIDTH: 230px; COLOR: #79a2bd; LINE-HEIGHT: 24px; PADDING-TOP: 0px; HEIGHT: 24px; TEXT-DECORATION: none
+        }
+        #uboxstyle UL.tag_options LI.open_hover {
+            BACKGROUND: url(http://www.geekso.com/attachment/ubox-select.gif) no-repeat 0px -72px; COLOR: #fff
+        }
+        #uboxstyle UL.tag_options LI.open_selected {
+            BACKGROUND: url(http://www.geekso.com/attachment/ubox-select.gif) no-repeat 0px -96px; COLOR: #fff
+        }

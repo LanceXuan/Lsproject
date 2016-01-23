@@ -1,0 +1,8 @@
+package com.lesso.service;
+
+import com.lesso.beans.CcNotice;
+
+public interface CcNoticeService {
+	
+	public boolean saveCcNotice(CcNotice ccNotice);
+}

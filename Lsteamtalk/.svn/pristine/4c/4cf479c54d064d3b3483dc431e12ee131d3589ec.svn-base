@@ -1,0 +1,68 @@
+$(function(){
+	InitPage();
+});
+
+function InitPage(){
+   $('#t_group').datagrid({
+	   idField:'id',
+	   title:'群组管理',
+	   url:'',
+	   fit:true,
+	   height:'550',
+	   striped:true,
+	   loadMsg:'loading',
+	   rownumbers:true,
+	   collapsible:true,
+	   remoteSort:false,
+       nowrap:false,
+       pagination:true,
+	   rowStyler:function(index,record){
+		   
+	   },
+	   forzenColumns:[[
+	                   {
+	                	   field:'ck',
+	                	   width:50,
+	                	   checkbox:true
+	                   }
+	                 ]],
+	   columns:[[
+	             {
+	            	 field:'id',
+	            	 title:'Id',
+	            	 width:50,
+	            	 align:'center'
+	             },{
+	            	 field:'name',
+	            	 title:'名称',
+	            	 width:100,
+	            	 align:'center'
+	             },{
+	            	 field:'creator',
+	            	 title:'群主',
+	            	 width:100,
+	            	 align:'center'
+	             },{
+	            	 field:'count',
+	            	 title:'人数',
+	            	 width:100,
+	            	 align:'center'
+	             },{
+	            	 field:'created',
+	            	 title:'创建时间',
+	            	 width:100,
+	            	 align:'center'
+	             },{
+	            	 field:'lastChated',
+	            	 title:'最后聊天时间',
+	            	 width:100,
+	            	 align:'center'
+	             }
+	             
+	          ]],
+	    pageSize:10,
+	    pageList:[5,10,15,20,50],
+	    toolbar :'#tb'
+	   
+   });
+}

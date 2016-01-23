@@ -1,0 +1,4 @@
+driver=com.microsoft.sqlserver.jdbc.SQLServerDriver
+url=jdbc:sqlserver://192.168.4.177:1433;DatabaseName=EDFXDB
+username=sa
+password=lesso123.

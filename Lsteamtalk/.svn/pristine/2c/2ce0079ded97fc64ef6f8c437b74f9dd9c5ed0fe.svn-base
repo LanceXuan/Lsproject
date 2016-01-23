@@ -1,0 +1,70 @@
+package com.lesso.daoImpl;
+
+import java.util.List;
+import java.util.Map;
+
+import com.lesso.beans.IMDiscovery;
+import com.lesso.dao.IMDiscoveryDao;
+
+public class IMDiscoveryDaoImpl extends BaseDaoImpl<IMDiscovery> implements IMDiscoveryDao{
+
+	@Override
+	public IMDiscovery findIMDiscovery(String username) {
+		return null;
+	}
+
+	@Override
+	public IMDiscovery findIMDiscoveryById(int id) {
+		return null;
+	}
+
+	@Override
+	public int saveIMDiscovery(IMDiscovery imd) {
+		try{
+            this.save(imd);
+			 return 1;
+	        }catch(Exception e){
+	     	   e.printStackTrace();
+	    		   return 0;
+	        }
+	}
+
+	@Override
+	public List<IMDiscovery> findByPagination(int currentPage, int pageSize,
+			Map<String, Object> m) throws Exception {
+		return null;
+	}
+
+	@Override
+	public int getTotal(Map<String, Object> m) throws Exception {
+		return 0;
+	}
+
+	@Override
+	public boolean updateIMDiscovery(IMDiscovery imu) {
+		try{
+            this.update(imu);
+			 return true;
+	        }catch(Exception e){
+	     	   e.printStackTrace();
+	    		   return false;
+	        }
+	}
+
+	@Override
+	public boolean deleteIMDiscovery(int id) {
+		try{
+            this.delete(id);
+			 return true;
+	        }catch(Exception e){
+	     	   e.printStackTrace();
+	    	   return false;
+	        }
+	}
+
+	@Override
+	public boolean updatestate(int id) {
+		return false;
+	}
+
+}

@@ -1,0 +1,107 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+	String path = request.getContextPath();
+%>
+
+<%@ page import="com.lesso.beans.IMUser" %>
+<%
+  String username = "";
+    IMUser user = (IMUser)session.getAttribute("userinfo");
+  if(user==null){ 
+	  response.sendRedirect("../sign.jsp");
+   }else{
+	   username=user.getNick();
+   }
+  %>
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>通知公告</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="<%=path %>/multiselect/jquery.multiselect2side.css" />
+<script type="text/javascript" src="<%=path %>/multiselect/jquery-1.8.1.min.js"></script>
+<script type="text/javascript"  src="<%=path %>/jqueryeasyui/jquery.easyui.min.js" charset="utf-8"></script>
+<script type="text/javascript"  src="<%=path %>/jqueryeasyui/locale/easyui-lang-zh_CN.js" charset="utf-8" type="text/javascript"></script>
+<link href="<%=path %>/jqueryeasyui/themes/default/easyui.css" rel="stylesheet">
+<link href="<%=path %>/jqueryeasyui/themes/icon.css" rel="stylesheet">
+<script type="text/javascript" src="<%=path %>/ud/editor_config.js"></script>
+<script type="text/javascript" src="<%=path %>/ud/editor_all.js"></script>
+<script type="text/javascript" src="<%=path %>/ud/uparse.js"></script>
+<script type="text/javascript" src="<%=path %>/ud/_examples/editor_api.js"></script>
+<style type="text/css">
+.clear {
+	clear: both;
+}
+#editor{
+	margin-top: 10px;
+}
+.editor_div {
+	width: 1000px;
+	margin: 0 auto;
+}
+.div_item{
+	margin-top: 5px;
+}
+.div_item input{
+	width: 458px;
+}
+#btns {
+	padding-top: 20px; width : 100%;
+	text-align: center;
+	width: 100%;
+}
+
+</style>
+</head>
+<body>
+	<div class="editor_div">
+	    <input id="userID" name="userID" type="hidden" value="<%=user.getId() %>"/>
+		<div class="div_item">部门:<input name="chadepId" id="chadepId" /></div>
+		
+		<div class="div_item">接收人:</div>
+		<div class="selectPersion">
+			<form id="sel_form" action="posts.php" method="post">
+				<div id="sel">
+					<select name="liOption[]" id='liOption' multiple='multiple' size="10">
+
+					</select>
+				</div>
+			</form>
+		</div>
+		<div class="clear"></div>
+		<div class="div_item">标题:<input name="title" id="title" /></div>
+		<div id="editor"></div>
+		<div class="clear"></div>
+		<div id="btns">
+			<button onclick="sendNotice()">发送</button>
+		</div>
+
+	</div>
+
+</body>
+<script type="text/javascript" src="<%=path %>/multiselect/jquery.multiselect2side.js"></script>
+<script type="text/javascript" src="<%=path %>/js/userMessageSend.js"></script>
+
+<script type="text/javascript">
+	//实例化编辑器
+	var ue = new UE.ui.Editor();
+	ue.render("editor");
+	//实例化编辑器
+	//建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+	var uedit = UE.getEditor('editor');
+
+	function getContent() {
+		return UE.getEditor('editor').getContent();
+	}
+
+	function getContentTxt() {
+		var arr = [];
+		arr.push("使用editor.getContentTxt()方法可以获得编辑器的纯文本内容");
+		arr.push("编辑器的纯文本内容为：");
+		arr.push(UE.getEditor('editor').getContentTxt());
+		alert(arr.join("\n"));
+	}
+	
+
+</script>
+</html>

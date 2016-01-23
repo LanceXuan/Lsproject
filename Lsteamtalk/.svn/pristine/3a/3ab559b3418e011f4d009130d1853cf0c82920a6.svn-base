@@ -1,0 +1,93 @@
+package com.lesso.action;
+
+import java.io.IOException;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+
+
+
+
+
+import net.sf.json.JSONArray;
+
+import com.lesso.beans.ErrorMsg;
+import com.lesso.beans.IMGroup;
+import com.lesso.service.IMGroupService;
+import com.lesso.serviceImpl.IMGroupServiceImpl;
+import com.lesso.util.ResponseUtil;
+
+public class GroupAction extends HttpServlet{
+	private IMGroupService service = new IMGroupServiceImpl();
+   public void doGet(HttpServletRequest request,HttpServletResponse response) 
+		   throws ServletException, IOException{
+	   doPost(request,response);
+   }
+   public void doPost(HttpServletRequest request, HttpServletResponse response)
+	        throws ServletException, IOException {
+	   String method = request.getParameter("method") == null?"":request.getParameter("method");
+	   if("getlist".equals(method)){
+		   getGroupList(request,response);
+	   }else if("combolist".equals(method)){
+		   combolist(request,response);
+	   }
+   }
+   
+   
+  private void combolist(HttpServletRequest request, HttpServletResponse response) {
+	  try{
+			Map<String ,Object> m = new LinkedHashMap<String ,Object>();
+			m.put("status", 0);
+			List<IMGroup> list = service.getIMGroupList(-1 , -1 , m);
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("text/json");
+		    response.getWriter().write(JSONArray.fromObject(list).toString());
+	  }catch(Exception e){
+		  this.ReMsg(response, true, e.getMessage(), e.getMessage());
+			e.printStackTrace();
+	  }
+	
+}
+private void getGroupList(HttpServletRequest request,HttpServletResponse response) {
+    try{
+		String page = request.getParameter("page") == null?"":request.getParameter("page");
+		String rows = request.getParameter("rows") == null?"":request.getParameter("rows");
+		Map<String ,Object> m = new LinkedHashMap<String ,Object>();
+		m.put("status", 0);
+		List<IMGroup> list = service.getIMGroupList(Integer.parseInt(page) , Integer.parseInt(rows) , m);
+		int total = service.getTotal(m);
+		ResponseUtil.toPaginationJson(response, list, total);
+		response.setContentType("text/html;charset=utf-8");
+	    response.getWriter().write(JSONArray.fromObject(list).toString());
+    }catch(Exception e){
+    	this.ReMsg(response, true, e.getMessage(), e.getMessage());
+		e.printStackTrace();
+    }   
+	
+  }
+  
+  
+  
+  
+  
+  
+	public void ReMsg(HttpServletResponse response,boolean HasError,String errormsg,String logmsg){
+		try{
+		    ErrorMsg msg = new ErrorMsg();
+			msg.setHasError(HasError);
+			msg.setExceptionMag(errormsg);
+			msg.setLogMsg(logmsg);
+			response.setContentType("text/html;charset=utf-8");
+		    response.getWriter().write(JSONArray.fromObject(msg).toString());
+		 }catch(Exception e){
+			 e.printStackTrace();
+		 }
+	}
+}

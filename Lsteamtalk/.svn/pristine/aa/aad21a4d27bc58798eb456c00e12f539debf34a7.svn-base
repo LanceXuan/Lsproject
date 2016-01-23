@@ -1,0 +1,13 @@
+package com.lesso.dao;
+
+import com.lesso.beans.Z_KNA;
+
+/** * @author  Lance 
+ * @date 创建时间：2016年1月5日 上午9:09:46 
+ * @version 1.0 
+ * @parameter  
+ * @since  
+ * @return  */
+public interface Z_KNADao extends BaseDao<Z_KNA>{
+    
+}

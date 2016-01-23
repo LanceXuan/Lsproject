@@ -1,0 +1,6 @@
+driver=com.mysql.jdbc.Driver
+url=jdbc:mysql://192.168.4.152:3306/teamtalk?useUnicode=true&characterEncoding=UTF-8
+username=root
+password=12345
+
+#url=jdbc:mysql://192.168.4.178:3306/teamtalk?useUnicode=true&characterEncoding=UTF-8

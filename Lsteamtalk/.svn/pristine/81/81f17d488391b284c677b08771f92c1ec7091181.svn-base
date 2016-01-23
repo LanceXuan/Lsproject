@@ -1,0 +1,49 @@
+package com.lesso.daoImpl;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.Map.Entry;
+
+import com.lesso.beans.Z_Vkorg;
+import com.lesso.dao.Z_VkorgDao;
+import com.lesso.util.DBUtils;
+
+/** * @author  Lance 
+ * @date 创建时间：2016年1月5日 上午9:43:55 
+ * @version 1.0 
+ * @parameter  
+ * @since  
+ * @return  */
+public class Z_VkorgDaoImpl extends BaseDaoImpl<Z_Vkorg> implements Z_VkorgDao{
+
+	@Override
+	public List<Z_Vkorg> getList() {
+		try{
+			Connection conn = DBUtils.createConn();
+	 		String sql = " select * from Z_VKORG";
+	 		PreparedStatement ps = DBUtils.getPs(conn, sql);
+	 		ResultSet rs = ps.executeQuery();
+	 		
+	 		List<Z_Vkorg> ulist = new ArrayList<Z_Vkorg>();
+	 		while(rs.next()){
+	 			Z_Vkorg mp = new Z_Vkorg();
+	            mp.setVkorg(rs.getString("vkorg"));
+	            mp.setVkorg_name(rs.getString("vkorg_name"));
+			    ulist.add(mp);
+	 		}
+	 		return ulist;
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+ 		
+ 		
+	}
+
+}

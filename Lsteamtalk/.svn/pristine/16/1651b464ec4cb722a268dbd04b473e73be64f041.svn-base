@@ -1,0 +1,28 @@
+package com.lesso.util;
+
+public class StringUtil {
+    public static boolean isEmpty(String str){
+    	if("".equals(str)||str==null){
+			return true;
+		}else{
+			return false;
+		}
+    }
+    
+    
+    public static boolean isNotEmpty(String str){
+		if(!"".equals(str)&&str!=null){
+			return true;
+		}else{
+			return false;
+		}
+	}
+    
+    public static boolean IsinStringArr(String[] arr, String targetValue) {
+        for(String s: arr){
+            if(s.equals(targetValue))
+                return true;
+        }
+        return false;
+    }
+}

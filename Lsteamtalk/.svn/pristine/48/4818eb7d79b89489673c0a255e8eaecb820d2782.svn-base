@@ -1,0 +1,13 @@
+package com.lesso.dao;
+
+import com.lesso.beans.Z_User_Power_User;
+
+/** * @author  Lance 
+ * @date 创建时间：2016年1月5日 上午9:12:45 
+ * @version 1.0 
+ * @parameter  
+ * @since  
+ * @return  */
+public interface Z_User_Power_UserDao extends BaseDao<Z_User_Power_User> {
+
+}

@@ -1,0 +1,14 @@
+package com.lesso.daoImpl;
+
+import com.lesso.beans.Z_KNA;
+import com.lesso.dao.Z_KNADao;
+
+/** * @author  Lance 
+ * @date 创建时间：2016年1月5日 上午9:32:03 
+ * @version 1.0 
+ * @parameter  
+ * @since  
+ * @return  */
+public class Z_KNADaoImpl extends BaseDaoImpl<Z_KNA> implements Z_KNADao{
+
+}

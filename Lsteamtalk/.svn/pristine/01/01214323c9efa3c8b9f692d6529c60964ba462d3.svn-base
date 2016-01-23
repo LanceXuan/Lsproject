@@ -1,0 +1,15 @@
+package com.lesso.daoImpl;
+
+import com.lesso.beans.Z_Depart_Type_Right;
+import com.lesso.dao.Z_Depart_Type_RightDao;
+
+/** * @author  Lance 
+ * @date 创建时间：2016年1月5日 上午9:29:37 
+ * @version 1.0 
+ * @parameter  
+ * @since  
+ * @return  */
+public class Z_Depart_Type_RightDaoImpl extends BaseDaoImpl<Z_Depart_Type_Right> 
+ implements Z_Depart_Type_RightDao {
+
+}

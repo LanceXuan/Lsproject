@@ -1,0 +1,136 @@
+package com.lesso.daoImpl;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.Map.Entry;
+
+import com.lesso.beans.Z_KNA;
+import com.lesso.dao.Z_KNADao;
+import com.lesso.util.DBUtils;
+
+/** * @author  Lance 
+ * @date 创建时间：2016年1月5日 上午9:32:03 
+ * @version 1.0 
+ * @parameter  
+ * @since  
+ * @return  */
+public class Z_KNADaoImpl extends BaseDaoImpl<Z_KNA> implements Z_KNADao{
+
+	@Override
+	public List<Z_KNA> getZ_KNAList(int currentPage, int pageSize,
+			Map<String, Object> m) {
+		try{
+			Connection conn = DBUtils.createConn();
+	 		String sql = " select * from Z_KNA  where 1=1 ";
+
+	 		Set<Entry<String, Object>> set = m.entrySet();
+	 		Iterator io = set.iterator();
+	 		while (io.hasNext()) {
+	 			Map.Entry<String, Object> me = (Map.Entry<String, Object>) io.next();
+	 			if("name".equals(me.getKey()) && !"".equals(me.getValue())){
+	 				sql += " and " + me.getKey() + " like '%"+ me.getValue()  +"%'" ;
+	 			}
+	 			if("area_name".equals(me.getKey()) && !"".equals(me.getValue())){
+	 				sql += " and " + me.getKey() + " like '%"+ me.getValue()  +"%'" ;
+	 			}
+	 			if("Kunnr".equals(me.getKey()) && !"".equals(me.getValue())){
+	 				sql += " and " + me.getKey() + " = '" + me.getValue() +"'";
+	 			}
+	 			if("vkorg".equals(me.getKey()) && !"".equals(me.getValue())){
+	 				sql += " and " + me.getKey() + " = '" + me.getValue() +"'";
+	 			}
+	 			if("Login_id".equals(me.getKey()) && !"".equals(me.getValue())){
+	 				sql += " and " + me.getKey() + " = '" + me.getValue() +"'";
+	 			}
+	 			if("pwd".equals(me.getKey()) && !"".equals(me.getValue())){
+	 				sql += " and " + me.getKey() + " = '" + me.getValue() +"'";
+	 			}
+	 			if("area".equals(me.getKey()) && !"".equals(me.getValue())){
+	 				sql += " and " + me.getKey() + " = '" + me.getValue() +"'";
+	 			}
+	 			if("sort".equals(me.getKey()) && !"".equals(me.getValue())){
+	 				sql += " order by " + me.getValue() ;
+	 			}
+	 			if("order".equals(me.getKey()) && !"".equals(me.getValue())){
+	 				sql += " " + me.getValue();
+	 			}			
+	 		}
+	 		if(currentPage >0 && pageSize>0){
+	 		    sql = sql +" limit " + (currentPage-1)*pageSize +" , "  + pageSize ;
+	 		}
+	 		PreparedStatement ps = DBUtils.getPs(conn, sql);
+	 		ResultSet rs = ps.executeQuery();
+	 		
+	 		List<Z_KNA> ulist = new ArrayList<Z_KNA>();
+	 		while(rs.next()){
+	 			Z_KNA mp = new Z_KNA();
+	 			mp.setArea(rs.getString("area"));
+	 			mp.setArea_name(rs.getString("area_name"));
+	 			mp.setKunnr(rs.getString("kunnr"));
+	 			mp.setLogin_id(rs.getString("login_id"));
+	 			mp.setName(rs.getString("name"));
+	 			mp.setPwd(rs.getString("pwd"));
+	 			mp.setVkorg(rs.getString("vkorg"));
+				ulist.add(mp);
+	 		}
+	 		return ulist;
+		}catch(Exception e){
+			return null;
+		}
+		
+	}
+
+	@Override
+	public int getTotal(Map<String, Object> m) throws Exception {
+		Connection conn = DBUtils.createConn();
+ 		String sql = " select count(*) from Z_KNA  where 1=1 ";
+
+ 		Set<Entry<String, Object>> set = m.entrySet();
+ 		Iterator io = set.iterator();
+ 		while (io.hasNext()) {
+ 			Map.Entry<String, Object> me = (Map.Entry<String, Object>) io.next();
+ 			if("name".equals(me.getKey()) && !"".equals(me.getValue())){
+ 				sql += " and " + me.getKey() + " like '%"+ me.getValue()  +"%'" ;
+ 			}
+ 			if("area_name".equals(me.getKey()) && !"".equals(me.getValue())){
+ 				sql += " and " + me.getKey() + " like '%"+ me.getValue()  +"%'" ;
+ 			}
+ 			if("Kunnr".equals(me.getKey()) && !"".equals(me.getValue())){
+ 				sql += " and " + me.getKey() + " = '" + me.getValue() +"'";
+ 			}
+ 			if("vkorg".equals(me.getKey()) && !"".equals(me.getValue())){
+ 				sql += " and " + me.getKey() + " = '" + me.getValue() +"'";
+ 			}
+ 			if("Login_id".equals(me.getKey()) && !"".equals(me.getValue())){
+ 				sql += " and " + me.getKey() + " = '" + me.getValue() +"'";
+ 			}
+ 			if("pwd".equals(me.getKey()) && !"".equals(me.getValue())){
+ 				sql += " and " + me.getKey() + " = '" + me.getValue() +"'";
+ 			}
+ 			if("area".equals(me.getKey()) && !"".equals(me.getValue())){
+ 				sql += " and " + me.getKey() + " = '" + me.getValue() +"'";
+ 			}
+ 			if("sort".equals(me.getKey()) && !"".equals(me.getValue())){
+ 				sql += " order by " + me.getValue() ;
+ 			}
+ 			if("order".equals(me.getKey()) && !"".equals(me.getValue())){
+ 				sql += " " + me.getValue();
+ 			}			
+ 		}
+ 		PreparedStatement ps = DBUtils.getPs(conn, sql);
+ 		ResultSet rs = ps.executeQuery();
+ 		int count = 0 ;
+ 		if(rs.next()){
+ 			
+ 			count = rs.getInt(1);
+ 		}
+ 		return count;
+	}
+
+}

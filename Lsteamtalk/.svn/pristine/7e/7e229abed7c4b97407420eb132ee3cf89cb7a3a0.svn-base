@@ -1,0 +1,15 @@
+package com.lesso.daoImpl;
+
+import com.lesso.beans.Z_User_Vkorg;
+import com.lesso.dao.Z_User_VkorgDao;
+
+
+/** * @author  Lance 
+ * @date 创建时间：2016年1月5日 上午9:40:20 
+ * @version 1.0 
+ * @parameter  
+ * @since  
+ * @return  */
+public class Z_User_VkorgDaoImpl extends BaseDaoImpl<Z_User_Vkorg> implements Z_User_VkorgDao {
+
+}

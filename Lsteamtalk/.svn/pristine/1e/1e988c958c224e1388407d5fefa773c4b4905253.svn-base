@@ -1,0 +1,21 @@
+package com.lesso.quartz;
+
+import org.quartz.Job;
+import org.quartz.JobExecutionContext;
+import org.quartz.JobExecutionException;
+
+/** * @author  Lance 
+ * @date 创建时间：2016年1月13日 上午9:08:10 
+ * @version 1.0 
+ * @parameter  
+ * @since  
+ * @return  */
+public class SyncUserJob implements Job{
+
+	@Override
+	public void execute(JobExecutionContext arg0) throws JobExecutionException {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

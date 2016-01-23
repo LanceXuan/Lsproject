@@ -1,0 +1,123 @@
+package com.lesso.serviceImpl;
+
+import java.util.List;
+import java.util.Map;
+
+import com.lesso.beans.ErrorMsg;
+import com.lesso.beans.IMUser;
+import com.lesso.daoImpl.IMUserDaoImpl;
+import com.lesso.service.IMUserService;
+import com.lesso.util.MD5Util;
+
+public class IMUserServiceImpl implements IMUserService{
+    private IMUserDaoImpl dao = new IMUserDaoImpl();
+	@Override
+	public IMUser findIMUser(String username) {
+		// TODO Auto-generated method stub
+		return dao.findIMUser(username);
+	}
+
+	@Override
+	public boolean saveIMUser(IMUser imuser) {
+		// TODO Auto-generated method stub
+		int isok = dao.saveIMUser(imuser);
+		//处理结果
+        if(isok>0){
+            System.out.println("操作成功");
+            return  true;
+        }else{
+            System.out.println("操作失败");
+            return false;
+        }
+		
+	}
+
+	@Override
+	public List<IMUser> findByPagination(int currentPage, int pageSize,
+			Map<String, Object> m) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.findByPagination(currentPage, pageSize, m);
+	}
+
+	@Override
+	public int getTotal(Map<String, Object> m) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.getTotal(m);
+	}
+
+	@Override
+	public boolean deleteIMUser(int id) {
+		try {
+			this.dao.delete(id);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+
+	}
+
+	@Override
+	public boolean updatestate(int id) {
+		try {
+			return this.dao.updatestate(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	@Override
+	public boolean updateIMUserPwd(String pwd, int id) {
+		try {
+			IMUser iu = dao.findById(id);
+			String newpwd="";
+			boolean isok =false;
+			if(iu !=null){
+				newpwd =MD5Util.md5(MD5Util.md5(pwd)+iu.getSalt());
+				if(!"".equals(newpwd)){
+				isok = dao.updateIMUserPwd(newpwd, id);
+				}
+			}
+			return isok;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+		
+	}
+
+	@Override
+	public boolean updateIMUser(String name, String sex, String nick,
+			String phone, String email, String departId, String photo, int id,int type) {
+		return dao.updateIMUser(name, sex, nick, phone, email, departId, photo, id,type);
+	}
+
+	@Override
+	public ErrorMsg updateIMUserpwd(String name,String oldpassword,String newpassword) {
+		ErrorMsg msg = new ErrorMsg();
+		try{
+			IMUser user = dao.findIMUser(name.trim());
+			String oldpwd = MD5Util.md5(MD5Util.md5(oldpassword.trim())+user.getSalt());
+			
+			if(oldpwd.equals(user.getPassword())){
+				String newpwd = MD5Util.md5(MD5Util.md5(newpassword.trim())+user.getSalt());
+				boolean isok = dao.updateIMUserpwd(name, newpwd, user.getId(), 0);
+				msg.setHasError(!isok);
+				msg.setLogMsg("suceess");
+			}else{
+				msg.setHasError(true);
+				msg.setLogMsg("fail");
+				msg.setExceptionMag("旧密码错误");
+			}
+			return msg;
+		}catch(Exception e){
+			msg.setHasError(true);
+			msg.setLogMsg("fail");
+			msg.setExceptionMag(e.getMessage());
+			return msg;
+		}
+	}
+
+}

@@ -1,0 +1,33 @@
+package com.lesso.action;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.lesso.service.Z_VkorgService;
+import com.lesso.serviceImpl.Z_VkorgServiceImpl;
+
+/** * @author  Lance 
+ * @date 创建时间：2016年1月5日 上午11:09:07 
+ * @version 1.0 
+ * @parameter  
+ * @since  
+ * @return  */
+public class VkorgListAction extends HttpServlet{
+	private Z_VkorgService service = new Z_VkorgServiceImpl();
+	public void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+			doPost(request, response);
+	}
+	
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
+	        throws ServletException, IOException {
+		String method = request.getParameter("method") == null?"":request.getParameter("method");
+		if("getVkorgList".equals(method)){
+			service.getAll(request, response);
+		}
+	}
+}

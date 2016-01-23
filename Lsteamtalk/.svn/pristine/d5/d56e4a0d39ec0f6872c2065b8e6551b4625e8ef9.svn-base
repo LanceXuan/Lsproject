@@ -1,0 +1,128 @@
+$(function(){
+	InitPage();
+});
+
+function dk(id){
+    window.showModalDialog("tabnoticestatus.jsp?id="+id,"hkj","dialogWidth=500px;dialogHeight=330px");
+}
+function InitPage(){
+    $('#t_notice').datagrid({
+        idField:'id',
+        title:'公告列表',
+        url:'../privilegemgmt/ccNotice.action',	
+        fit:true,
+		height:550,
+		width:700,
+	//	fitColumns:true,
+		striped:true,
+		loadMsg:'loading...',
+		rownumbers:true,
+		collapsible:true,
+        remoteSort:false,
+        nowrap:false,
+        pagination:true,
+//      singleSelect:true,
+//      remoteSort:false,
+        rowStyler:function(index,record){
+//        	if(record.sex==0){
+//        		return "background:green";
+//        	}
+        },
+        frozenColumns:[[      //冻结列特性，不要与fitColumns特性一起使用
+            {
+                field:'ck',
+                width:50,
+                checkbox:true
+            }
+         ]],
+         columns:[[
+                   {
+		         	field:'id',
+		        	title:'ID',
+		        	width:50,
+		        	align:'center'
+		           },{
+                	field:'name',
+                	title:'标题',
+                	width:450,
+                	align:'center',
+                	formatter:function(val,rec){
+        		//	return '<a href="../privilegemgmt/ccNotice.action?method=getCcNotice&noticeId='+rec.id'">('+val+')</a>';
+        			return '<a href="../privilegemgmt/ccNotice.action?method=getCcNotice&iceId='+rec.id+'" target="_blank" style="color:red;">'+rec.title+'</a>';
+        			} 
+                   },{
+                	   field:'created',
+                	   title:'发布时间',
+                	   width:240,
+                	   align:'center'
+                   },{
+                	   field:'MarkRead',
+                	   title:'阅读状态',
+                	   width:240,
+                	   align:'center',
+                	   formatter:function(val,rec){
+                   			return '<a href="../jsp/tabnoticestatus.jsp?id='+rec.id+'" target="_blank" style="color:red;">阅读状态</a>';
+                		//	return '<a onclick="window.showModalDialog("../jsp/noticeReadStatus.jsp?id='+rec.id+'","dialogWidth=200px;dialogHeight=100px");" target="_blank" style="color:red;">阅读状态</a>';
+                		
+                		 //  return '<a href="#" onclick="dk('+rec.id+')" style="color:red;">阅读状态</a>';
+                	   }
+                   }
+         ]],
+         pageSize:20,
+         pageList:[5,10,15,20,50],
+            toolbar :'#tb'
+    });
+}
+
+
+
+function openLink(){
+	window.open("../ccNotice.jsp");
+}
+
+function updateLink(){
+	var node = $('#t_notice').datagrid('getSelections');
+	if(node == null || node == undefined || node.length == 0 || node.length >1)
+	{
+		  $.messager.alert('提示信息','请选择一个用户!');
+		  return false;
+	}
+	window.open("../ccNotice.action?method=updateCcNotice&noticeId="+node[0].id);
+	/*
+	$.ajax({
+		type : 'post',
+		url : '../privilegemgmt/ccNotice.action',
+		cache : false,
+		dataType : 'json',
+		data : {
+			method : "updateCcNotice",
+			noticeId:node[0].id
+		},
+		success: function(data) {
+			var json_data = JSON.parse(data.remarka);
+			alert(json_data.content);
+		}
+	});
+	*/
+}
+function deleteLink(){
+	var node = $('#t_notice').datagrid('getSelections');
+	var ids = "";
+	for(var i=0;i<node.length;i++){
+		ids += node[i].id+",";
+	}
+	ids = ids.substring(0, ids.length-1);
+	$.ajax({
+		type : 'post',
+		url : '../privilegemgmt/ccNotice.action',
+		cache : false,
+		dataType : 'json',
+		data : {
+			method : "deleteCcNotice",
+			noticeIds:ids
+		},
+		success: function(data) {
+			$.messager.alert('提示信息','删除成功!');
+		}
+	});
+}
